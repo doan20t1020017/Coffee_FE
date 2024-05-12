@@ -5,9 +5,9 @@ import "./index.css";
 import Storage from "./Contexts/StorageContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Storage>
-      <App />
-    </Storage>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <Storage>
+    <App />
+  </Storage>
+  // </React.StrictMode>
 );

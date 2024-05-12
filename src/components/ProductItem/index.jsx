@@ -9,6 +9,7 @@ function ProductItem({ data = {} }) {
       const newState = [...prev];
       const isExist = newState.find((item) => item.id === data.id);
       if (isExist) {
+        console.log(isExist);
         isExist.quantity++;
       } else {
         newState.push({
@@ -18,6 +19,7 @@ function ProductItem({ data = {} }) {
       }
       return newState;
     });
+    window.scroll(0, 0);
   };
   return (
     <div>

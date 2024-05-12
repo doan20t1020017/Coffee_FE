@@ -1,10 +1,19 @@
+import { useContext } from "react";
 import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
+import { StorageContext } from "../../Contexts/StorageContext";
 
-function CartItem({
-  item = { id: 1, name: "Bạc xỉu", quantity: 2, totalPrice: 200 },
-}) {
-  const { name, quantity, unitPrice } = item;
+function CartItem({ item = {} }) {
+  const { id, name, quantity, unitPrice } = item;
+  const storage = useContext(StorageContext);
+
+  const handleDeleteItem = () => {
+    storage.setCartItems((prev) => {
+      const newState = [...prev];
+      const result = newState.filter((item) => item.id !== id);
+      return result;
+    });
+  };
 
   return (
     <li className="py-3 sm:flex sm:items-center sm:justify-between">
@@ -15,7 +24,9 @@ function CartItem({
         <p className="text-sm font-bold">
           {formatCurrency(quantity * unitPrice)}
         </p>
-        <Button type="small">Xóa</Button>
+        <Button onClick={handleDeleteItem} type="small">
+          Xóa
+        </Button>
       </div>
     </li>
   );
