@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { StorageContext } from "../../Contexts/StorageContext";
+import { toast } from "react-toastify";
 
 function ProductItem({ data = {} }) {
   const storage = useContext(StorageContext);
@@ -9,7 +10,6 @@ function ProductItem({ data = {} }) {
       const newState = [...prev];
       const isExist = newState.find((item) => item.id === data.id);
       if (isExist) {
-        console.log(isExist);
         isExist.quantity++;
       } else {
         newState.push({
@@ -19,7 +19,7 @@ function ProductItem({ data = {} }) {
       }
       return newState;
     });
-    window.scroll(0, 0);
+    toast.success("Thêm sản phẩm thành công");
   };
   return (
     <div>
